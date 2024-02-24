@@ -1,11 +1,10 @@
-provider "docker" {
-  # Konfigurer Docker-provideren her om nødvendig
+provider "dockerhub" {
+  username = var.docker_username
+  password = var.docker_password
 }
 
 resource "dockerhub_repository" "project" {
-  name        = env("REPOSITORY_NAME")
-  namespace   = env("DOCKER_USERNAME")
-  description = "PGR-301"
-  password    = env("DOCKER_PASSWORD")
+  name        = var.repository_name
+  namespace   = var.docker_username
+  description = "Configure repositories"
 }
-

@@ -1,0 +1,5 @@
+/infra/.terraform.lock.hcl
+/infra/.terraform/providers/registry.terraform.io/barnabyshearer/dockerhub/0.0.15/windows_amd64/LICENSE
+/infra/.terraform/providers/registry.terraform.io/barnabyshearer/dockerhub/0.0.15/windows_amd64/README.md
+/infra/terraform.tfstate
+/infra/.terraform/providers/registry.terraform.io/barnabyshearer/dockerhub/0.0.15/windows_amd64/terraform-provider-dockerhub_v0.0.15.exe
