@@ -26,14 +26,17 @@ jobs:
         run: go build NBXBook.go #Kompilerer kode
 
       - name: Build Docker image
-        run: docker build . --tag nbx
+        run: docker build . --tag nbx #Bygg docker image
 
       - name: Push docker image if pushed to main
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' # kjør kode under om det pushes til main
         env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }} #Bruk github secret variable for brukernavn
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }} #Bruk github secret variable for docker token
+          #Koden under logger inn med token eller brukernavn og passord
+          #legger til docker tag med brukernavn og navn på prosjekt
+          # pusher prosjekt til docker
         run: |
-          echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin   
+          echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
           docker tag nbx $DOCKERHUB_USERNAME/nbx
           docker push $DOCKERHUB_USERNAME/nbx:latest
