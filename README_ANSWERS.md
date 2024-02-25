@@ -9,8 +9,7 @@ b) Slik beskytter man f.eks main branch i situasjoner hvor utviklere bruker pull
 4. Velg navn på branch du ønsker å beskytte (i dette tilfelle "main")
 5. Huk av boks med tittel "Require status check to pass before merging"
 6. Skriv inn navn på aktiv github actions workflow (Den som kompilerer koden) for å bruke den når man pusher til main.
-7. ////////Huk av "Do not allow bypassing the above settings" Denne vil gjøre det umulig å aktivere en pull request om workflowen har feilet.
-8. Trykk "create"
+7. Trykk "create"
 
 c) I en situasjon hvor man har en arbeidsflyt der minst 2 personer i teamet på godkjenne edringer mot main branch:
 - Ulemper:
@@ -25,14 +24,14 @@ Dette kan fremme kommunikasjon og samarbeid mellom utviklere.
 
 Oppgave 2
 
-a) ok
+a) Var usikker på om nbx skulle være i variabelen repository_name eller om det var ønsket å skrive det inn gjennom terminalen siden det ble nevnt at det ikke skulle hardkodes. 
 
 b) For at sensor skal kjøre terraform koden må følgene steg gjøres (Antat at terraform er lastet ned):
 1. Bruk terminalen og naviger deg til folderet "infra"
 2. Skriv "terraform init"
 3. Skriv "terraform plan" Her må du fylle inn ditt egen docker passord og brukernavn. i tillegg til repository navn (nbx)
 4. Skriv "terraform apply" Fyll inn lik information som i steg 3. etterfølgt av å skrive "yes" på fjerde spørsmål
-5. Om brukernavn og passord stemmer skal bilde være lastet opp på din personlige dockerhub bruker.
+5. Om brukernavn og passord stemmer skal et repo være lastet opp på sernsor sin dockerhub konto.
 
 c) Selv om man sletter "Terraform.tfstate" vil selve Docker hub repositoriet fortsatt eksistere.
 Dette gjør det ikke mulig å lage et nytt et med samme navn før det er slettet på dockerhub.
@@ -40,10 +39,10 @@ Dette gjør det ikke mulig å lage et nytt et med samme navn før det er slettet
 
 Oppgave 3
 
-Steg sensor må gjøre for å kjøre den oppdaterte GitHub Actions workflowen på sin egen PC.
-1. Aller først på sensor legge til secrets som dockerhub brukernavn og dockerhub token.
+Steg sensor må gjøre for å kjøre den oppdaterte GitHub Actions workflowen på sin egen PC etter å ha forket repo'et.
+1. Aller først på sensor legge til secrets som "dockerhub brukernavn" og "dockerhub token".
 2. dockerhub token finnes på egen dockerhub bruker ved å gå til "My account" -> "Security" -> "new access token". 
-3. Gå til det gjeldene repositoriet og gå på "Settings" -> "Secret and variables" og velg Actions.
+3. Gå til det gjeldene repositoriet og trykk på "Settings" -> "Secret and variables" og velg Actions.
 4. Trykk så på "New repository sercret". Her skal du legge til brukernavnet på din dockerhub bruker under navn "DOCKERHUB_USERNAME" og dockerhub token fra steg 2 under navn "DOCKERHUB_TOKEN".
 5. Nå skal det være synlig under fanen "Repository secrets".
 6. Ved kjøring av neste workflow mot main vil main.yml pushe docker image til dockerhub kontoen til sensor
